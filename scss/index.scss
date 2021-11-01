@@ -1,10 +1,10 @@
-@import "../client/app/node_modules/bulma/sass/utilities/initial-variables.sass";
-@import "../client/app/node_modules/bulma/sass/utilities/functions.sass";
-@import "../client/app/node_modules/bulma/sass/utilities/derived-variables.sass";
+@import "../client/node_modules/bulma/sass/utilities/initial-variables.sass";
+@import "../client/node_modules/bulma/sass/utilities/functions.sass";
+@import "../client/node_modules/bulma/sass/utilities/derived-variables.sass";
 $newpink:#fdf0e6;
 $newpink-invert: findColorInvert($newpink);
 $addColors:(
 "newpink":($newpink,$newpink-invert),
 );
 $colors: map-merge($colors,$addColors );
-@import "../client/app/node_modules/bulma/bulma.sass"
+@import "../client/node_modules/bulma/bulma.sass"
