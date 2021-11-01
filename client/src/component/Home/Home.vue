@@ -4,7 +4,7 @@
       <body>
         <!-- <div class="container is-flex-direction-row has-background-newpink is-fullhd">
             <div class="container is-inline-block is-flex-grow-1">
-              <img src="../../Images/Dumplings.jpg" width="580" height="300">
+              <img src="../../images/Dumplings.jpg" width="580" height="300">
             </div>  
             <div class="container is-inline-block is-flex-grow-1 ml-6 my-6">
               <h1>Chinese food, made easy </h1>
@@ -16,7 +16,7 @@
           <div class="columns is-vcentered">
             <div class="column is-5">
               <figure class="image is-4by3">
-                <img src="../../Images/Dumplings.jpg">
+                <img src="../../images/Dumplings.jpg">
               </figure>   
             </div>
             <div class="column is-6 is-offset-1">

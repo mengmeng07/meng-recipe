@@ -3,7 +3,7 @@
         <div class="navbar is-newpink" role="navigation" ariar-label="main navigation">
             <div class="navbar-brand">
                 <a class= "navbar-item" @click="goToHome">   
-                    <img src="./Images/LOGO.jpg" >
+                    <img src="./images/LOGO.jpg" >
                 </a>    
             </div>
 
