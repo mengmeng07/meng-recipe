@@ -1,6 +1,6 @@
 <template>
   <div class="form">
-    <editor-content :editor="title" />
+    <editor-content :editor="titleTipTap" />
     <editor-content :editor="body" />
     <button @click="updateData">submit</button>
   </div>
@@ -16,11 +16,12 @@ import axios from "axios";
 
 export default {
   components: {
+
     EditorContent,
   },
   data() {
     return {
-      title: null,
+      titleTipTap: null,
       body: null,
       recipe: {
         title: "",
@@ -31,29 +32,27 @@ export default {
   methods: {
     updateData: function () {
       const apiURL = "http://localhost:5000/recipe/create-recipe";
-      axios
-        .post(apiURL, this.recipe)
-        .then(() => {
-          this.recipe = {
-            title: JSON.stringify(this.title),
-            content: JSON.stringify(this.body),
-          };
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.recipe = {
+            title: this.titleTipTap.getJSON(),
+            content: this.body.getJSON(),
+      };
+      console.log(this.recipe.content),
+       console.log(this.recipe.title)
+      axios.post(apiURL, this.recipe)
+      .then(console.log("done" + this.recipe))
+    
     },
   },
 
   mounted() {
-    this.title = new Editor({
+    this.titleTipTap = new Editor({
       extensions: [Document, Text, Bold, Paragraph],
       content: "<p>Hey, this is initial title</p>",
       onUpdate({ editor }) {
         console.log('');
         console.log('updating title', editor);
         console.log(editor.getJSON());
-        console.log(editor.getText());
+        // console.log(editor.getText());
         console.log(editor.getHTML());
       }
     });
