@@ -15,7 +15,7 @@ import Paragraph from "@tiptap/extension-paragraph";
 import axios from "axios";
 
 export default {
-  components: {
+  components: { 
 
     EditorContent,
   },

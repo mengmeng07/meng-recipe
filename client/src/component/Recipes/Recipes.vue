@@ -24,7 +24,7 @@ export default{
     },
     created(){
         const apiURL='http://localhost:5000/recipe';
-        axios.get(apiURL).then(res=>{
+        axios.get(apiURL).then(res=>{ 
             // eslint-disable-next-line no-debugger
             debugger;
             this.Recipes = [res.data[res.data.length - 1]]
