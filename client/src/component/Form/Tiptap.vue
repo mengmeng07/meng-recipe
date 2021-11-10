@@ -32,14 +32,15 @@ export default {
   methods: {
     updateData: function () {
       const apiURL = "http://localhost:5000/recipe/create-recipe";
+      const recipeTitle = this.titleTipTap.getJSON();
+      const recipeContent = this.body.getJSON();
       this.recipe = {
-            title: this.titleTipTap.getJSON(),
-            content: this.body.getJSON(),
+            title: recipeTitle,
+            content: recipeContent,
       };
-      console.log(this.recipe.content),
-       console.log(this.recipe.title)
+    
       axios.post(apiURL, this.recipe)
-      .then(console.log("done" + this.recipe))
+      .then(() => console.log("done", this.recipe, recipeTitle, recipeContent))
     
     },
   },
