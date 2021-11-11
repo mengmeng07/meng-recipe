@@ -7,7 +7,7 @@
     >
       <div class="navbar-brand">
         <a class="navbar-item" @click="goToHome">
-          <img src="./images/LOGO.jpg" />
+          <img src="./images/logo.jpg"/>
         </a>
       </div>
 
