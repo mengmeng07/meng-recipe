@@ -7,51 +7,52 @@
             <div class ="form-group">
                 <label>Name</label>
                 <input type ="text" class = "form-control" v-model = "recipe.title" required>
-            </div>    
+            </div>
              <div class ="form-group">
                 <label>Content</label>
                 <input type ="text" class = "form-control" v-model = "recipe.content" required>
             </div>
             <div class ="form-group">
-                <button>Update</button>       
-            </div>    
-                
+                <button>Update</button>
+            </div>
+
         </form>
-        <button @click ="deleteRecipe">Delete</button>    
+        <button @click ="deleteRecipe">Delete</button>
     </div>
 </template>
 
-
 <script>
-import axios from 'axios'
+import { recipeService } from '../../../services';
+
 export default{
-    data(){
-        return{
-        id: this.$route.params.id,    
-        recipe:{} 
+    data() {
+        return {
+            id: this.$route.params.id,
+            recipe: {}
         }
     },
-    created(){
-        const apiURL = 'http://localhost:5000/recipe/'+ this.id
-        axios.get(apiURL).then(res=>{
-            this.recipe = res.data
-        }).catch(error=>{
-            console.log(error)
-        })
+    created() {
+        recipeService.getRecipeById(this.id)
+            .then(recipe => {
+                this.recipe = recipe;
+            })
+            .catch(error=>{
+                console.log(error)
+            });
     },
     methods:{
-        deleteRecipe(){
-            const apiURL='http://localhost:5000/recipe/delete-recipe/'+ this.id
-            axios.delete(apiURL)
+        deleteRecipe() {
+            this.deleteRecipe(this.id)
+                .catch(error=>{
+                    console.log(error)
+                });
         },
-        editRecipe(){
-            const apiURL='http://localhost:5000/recipe/edit-recipe/'+ this.id
-            axios.post(apiURL,this.recipe).then((res)=>{
-                console.log(res)
-            }).catch(error=>{
-                console.log(error)
-            })
+        editRecipe() {
+            this.updateRecipe(this.id, this.recipe)
+                .catch(error=>{
+                    console.log(error)
+                });
         }
     }
-}    
+}
 </script>
