@@ -1,40 +1,42 @@
 <template>
     <div>
-        <div>{{Recipe.title}}</div>
-        <div>{{Recipe.content}}</div>
-        <button @click.prevent="deleteRecipe(Recipe._id)">delete recipe2</button>
-        <button @click.prevent="editRecipe(Recipe._id)">edit recipe</button>
-    </div>    
+        <div>{{recipe.title}}</div>
+        <div>{{recipe.content}}</div>
+        <button @click.prevent="deleteRecipe(recipe._id)">delete recipe2</button>
+        <button @click.prevent="editRecipe(recipe._id)">edit recipe</button>
+    </div>
 </template>
 <script>
-import axios from 'axios'
-export default{
-    data(){
+import { recipeService } from '../../../services';
+
+export default {
+    data() {
         return{
-            id:this.$route.params.id,
-            Recipe:[]
+            id: this.$route.params.id,
+            recipe: []
         }
     },
-    
-    created(){
-        const apiURL='http://localhost:5000/recipe/' + this.id
-        axios.get(apiURL).then(res=>{
-            this.Recipe = res.data
-            console.log(this.Recipe)
-        }).catch(error=>{
-            console.log(error)
-        })        
+
+    created() {
+        recipeService.getRecipeById(this.id)
+            .then(recipe => {
+                this.recipe = recipe;
+            })
+            .catch(error => {
+                console.log(error)
+            });
     },
     methods:{
         deleteRecipe(id){
-            const apiURL = 'http://localhost:5000/recipe/delete-recipe/'+ id
-            if(window.confirm("Are you absofuckinglutely sure?")) {
-                axios.delete(apiURL).then(()=>{
-                }).catch(error=>{
-                    console.log(error)
-                })
+            if (window.confirm("Are you absofuckinglutely sure?")) {
+                recipeService.deleteRecipe(id)
+                    .then(() => {
+                        window.location.reload();
+                    })
+                    .catch(error=>{
+                        console.log(error)
+                    })
             }
-            window.location.reload()
         },
         editRecipe(id){
             this.$router.push({name:'edit',params:{id:id}})

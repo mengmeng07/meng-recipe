@@ -1,6 +1,9 @@
-import express, { Router } from 'express'
+import express, { Router } from 'express';
+
 import recipeContent from "../models/recipeContent.js"
-const router = express.Router()
+
+const router = express.Router();
+
 export const getRecipes = async (req,res)=>{
     try{
         const recipeBody = await recipeContent.find()
@@ -22,7 +25,7 @@ export const getRecipeById = async (req,res)=>{
 export const createRecipes = async (req,res)=>{
     const recipe = req.body
     const newRecipe = new recipeContent(recipe)
-    try{    
+    try{
         await newRecipe.save()
         res.status(201).json(newRecipe)
    } catch(error) {
@@ -31,7 +34,7 @@ export const createRecipes = async (req,res)=>{
 }
 
 export const deleteRecipe = async (req,res) =>{
-    try{ 
+    try{
         await recipeContent.findByIdAndRemove(req.params.id)}
     catch(error){
         res.status(409).json({message:error})

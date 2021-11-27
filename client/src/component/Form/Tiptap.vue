@@ -12,11 +12,11 @@ import Text from "@tiptap/extension-text";
 import Bold from "@tiptap/extension-bold";
 import Document from "@tiptap/extension-document";
 import Paragraph from "@tiptap/extension-paragraph";
-import axios from "axios";
+
+import { recipeService } from '../../services';
 
 export default {
-  components: { 
-
+  components: {
     EditorContent,
   },
   data() {
@@ -31,17 +31,16 @@ export default {
   },
   methods: {
     updateData: function () {
-      const apiURL = "http://localhost:5000/recipe/create-recipe";
+
       const recipeTitle = this.titleTipTap.getJSON();
       const recipeContent = this.body.getJSON();
       this.recipe = {
             title: recipeTitle,
             content: recipeContent,
       };
-    
-      axios.post(apiURL, this.recipe)
-      .then(() => console.log("done", this.recipe, recipeTitle, recipeContent))
-    
+
+      recipeService.createRecipe(this.recipe)
+        .then(() => console.log("done", this.recipe, recipeTitle, recipeContent))
     },
   },
 
@@ -68,4 +67,4 @@ export default {
   },
 };
 //test//
-</script> 
+</script>

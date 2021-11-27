@@ -9,7 +9,8 @@ app.use(express.urlencoded({ limit:"30mb", extended:true}))
 app.use(cors({
   origin: "*"
 }));
-app.use('/recipe',recipeRoutes)
+app.use('/api', recipeRoutes);
+
 const CONNECTION_URL = 'mongodb+srv://Pangpanglin:YksGQfpYmq523Gf@cluster0.ov1ry.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = process.env.PORT ||5000
 
